@@ -31,7 +31,7 @@ public class main {
         t.setVisible(true); 
         t.getImagePanel().setPoint(p.translateToImageXY(382.45, 332.23));
         
-        System.out.println(m.getName("243385e9572c147486753e7154f8fb46"));
-        System.out.println(m.getHistory("243385e9572c147486753e7154f8fb46"));        
+        System.out.println(m.getName("8bab983efc317349cae7e4db6fb0b355"));
+        System.out.println(m.getHistory("8bab983efc317349cae7e4db6fb0b355"));        
     }
 }

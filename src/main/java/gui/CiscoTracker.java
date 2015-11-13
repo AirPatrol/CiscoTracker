@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +18,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -28,10 +33,14 @@ public class CiscoTracker extends javax.swing.JFrame {
      * Creates new form CiscoTracker
      */
     private ImagePanel p;
+    private JTextArea taUserInfo;
+    private JButton btnAddToken;
 
     public CiscoTracker() {
         this.addImage();
         this.addImagePanel();
+        this.addTaUserInfo();
+        addbtnAddToken();
         initComponents();
     }
 
@@ -107,10 +116,39 @@ public class CiscoTracker extends javax.swing.JFrame {
         add(p);
     }
 
+    private void addTaUserInfo() {
+        this.taUserInfo = new JTextArea();
+        taUserInfo.setSize(200, 100);
+        taUserInfo.setLocation(810, 0);
+        add(taUserInfo);
+    }
+
+    private void addbtnAddToken() {
+        this.btnAddToken = new JButton("Add token...");
+        btnAddToken.setSize(200, 20);
+        btnAddToken.setLocation(810, 110);
+        //Add action listener to button
+        btnAddToken.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                String s = (String) JOptionPane.showInputDialog(                      
+                        "token:");
+
+                //If a string was returned, say so.
+                if ((s != null) && (s.length() > 0)) {
+                    System.out.println(s);
+                    return;
+                }
+            }
+        });
+
+        add(btnAddToken);
+    }
+
     private void addImage() {
         JLabel mapLabel = null;
         try {
-            BufferedImage map = ImageIO.read(new File("C:\\Users\\Daan\\Google Drive\\ICS proftaak\\ziekelijk mooie kaart.png"));
+            BufferedImage map = ImageIO.read(new File("C:\\Users\\Sjors\\Google Drive\\ICS proftaak\\ziekelijk mooie kaart.png"));
             mapLabel = new JLabel(new ImageIcon(map));
             mapLabel.setBounds(new Rectangle(800, 330));
         } catch (IOException ex) {
